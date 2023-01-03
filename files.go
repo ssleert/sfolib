@@ -33,6 +33,7 @@ func ReadLinesFromFile(s string, n int) ([]string, error) {
 	return lines, nil
 }
 
+// read first line from file
 func ReadLine(s string) (string, error) {
 	f, err := os.Open(s)
 	if err != nil {
@@ -42,4 +43,23 @@ func ReadLine(s string) (string, error) {
 	sc := bufio.NewScanner(f)
 	sc.Scan()
 	return sc.Text(), nil
+}
+
+// read N line from file
+func ReadLineFrom(s string, n int) (string, error) {
+	f, err := os.Open(s)
+	if err != nil {
+		return "", err
+	}
+	defer f.Close()
+
+	var line string
+	sc := bufio.NewScanner(f)
+	for i := 0; i < n && sc.Scan(); i++ {
+		if i < n-1 {
+			line = sc.Text()
+		}
+	}
+
+	return line, nil
 }

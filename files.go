@@ -56,7 +56,7 @@ func ReadLine(s string, n int) (string, error) {
 	var line string
 	sc := bufio.NewScanner(f)
 	for i := 0; i < n && sc.Scan(); i++ {
-		if i < n-1 {
+		if i == n-1 {
 			line = sc.Text()
 		}
 	}

@@ -33,7 +33,7 @@ func ReadLinesFromFile(s string, n int) ([]string, error) {
 	return lines, nil
 }
 
-func ReadLine(s string, n int) (string, error) {
+func ReadLine(s string) (string, error) {
 	f, err := os.Open(s)
 	if err != nil {
 		return "", err

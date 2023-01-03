@@ -6,7 +6,7 @@ import (
 )
 
 // read N lined from pointer to file
-func ReadLines(f *os.File, n int) []string {
+func ReadLinesFromFile(f *os.File, n int) []string {
 	lines := make([]string, 0, n)
 	sc := bufio.NewScanner(f)
 	for i := 0; i < n && sc.Scan(); i++ {
@@ -17,7 +17,7 @@ func ReadLines(f *os.File, n int) []string {
 }
 
 // read N lines from file
-func ReadLinesFromFile(s string, n int) ([]string, error) {
+func ReadLines(s string, n int) ([]string, error) {
 	f, err := os.Open(s)
 	if err != nil {
 		return nil, err
@@ -34,7 +34,7 @@ func ReadLinesFromFile(s string, n int) ([]string, error) {
 }
 
 // read first line from file
-func ReadLine(s string) (string, error) {
+func ReadFirstLine(s string) (string, error) {
 	f, err := os.Open(s)
 	if err != nil {
 		return "", err
@@ -46,7 +46,7 @@ func ReadLine(s string) (string, error) {
 }
 
 // read N line from file
-func ReadLineFrom(s string, n int) (string, error) {
+func ReadLine(s string, n int) (string, error) {
 	f, err := os.Open(s)
 	if err != nil {
 		return "", err

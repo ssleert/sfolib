@@ -3,18 +3,8 @@ package sfolib
 import (
 	"bufio"
 	"os"
+	"strings"
 )
-
-// read N lined from pointer to file
-func ReadLinesFromFile(f *os.File, n int) []string {
-	lines := make([]string, 0, n)
-	sc := bufio.NewScanner(f)
-	for i := 0; i < n && sc.Scan(); i++ {
-		lines = append(lines, sc.Text())
-	}
-
-	return lines
-}
 
 // read N lines from file
 func ReadLines(s string, n int) ([]string, error) {
@@ -65,19 +55,12 @@ func ReadLine(s string, n int) (string, error) {
 }
 
 // return all lines of file as slice of strings
-// n is the approximate number of lines in the file
-func LoadFile(s string, n int) ([]string, error) {
-	f, err := os.Open(s)
+func LoadFile(s string) ([]string, error) {
+	f, err := os.ReadFile(s)
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
 
-	lines := make([]string, 0, n)
-	sc := bufio.NewScanner(f)
-	for sc.Scan() {
-		lines = append(lines, sc.Text())
-	}
-
+	lines := strings.Split(string(f), "\n")
 	return lines, nil
 }

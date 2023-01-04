@@ -63,3 +63,21 @@ func ReadLine(s string, n int) (string, error) {
 
 	return line, nil
 }
+
+// return all lines of file as slice of strings
+// n is the approximate number of lines in the file
+func LoadFile(s string, n int) ([]string, error) {
+	f, err := os.Open(s)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	lines := make([]string, 0, n)
+	sc := bufio.NewScanner(f)
+	for sc.Scan() {
+		lines = append(lines, sc.Text())
+	}
+
+	return lines, nil
+}

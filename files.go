@@ -64,3 +64,9 @@ func LoadFile(s string) ([]string, error) {
 	lines := strings.Split(string(f), "\n")
 	return lines, nil
 }
+
+// return true if S file exists
+func Exists(s string) bool {
+	_, err := os.Stat(s)
+	return !os.IsNotExist(err)
+}

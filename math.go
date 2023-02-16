@@ -12,3 +12,8 @@ func Abs(n int) int {
 	}
 	panic("unreacheble")
 }
+
+// find percent between to values
+func Perc(n float64, a float64) float64 {
+	return n / a * 100
+}
